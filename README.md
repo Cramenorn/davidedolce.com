@@ -38,7 +38,10 @@ If you want to add a new post for the blog section, you need to follow these ste
 
 1. Create a new file with cshtml extension in __/Views/Blog__, for example **MyNewAwesomeBlog.cshtml**
 2. Add a new class of **IActionResult** type in __/Controllers/Blog.Controller.cs__, set the attribute routing to get and set the string in this way **my-new-awesome-blog**
-3. Add a new **Article** in the **Articles** class which is in __/Models/FakeArticleRepository.cs__, for example **new Article {ArticleID = "5", Title = "My new awesome blog", SubTitle = "This is a subtitle, change it later", PubDate = "March 9, 2019"}**
+3. Add a new **Article** in the **Articles** class which is in __/Models/FakeArticleRepository.cs__, for example:
+```csharp
+**new Article {ArticleID = "5", Title = "My new awesome blog", SubTitle = "This is a subtitle, change it later", PubDate = "March 9, 2019"}**
+```
 
 ### Note
 
