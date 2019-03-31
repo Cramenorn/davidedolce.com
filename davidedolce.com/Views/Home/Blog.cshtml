@@ -1,0 +1,48 @@
+﻿@model ArticleListViewModel
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/blog-bg.jpeg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>@ViewBag.TitleNav</h1>
+                    <span class="subheading">@ViewBag.SubTitleNav</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            @foreach (var art in Model.Articles)
+            {
+                <div class="post-preview">
+                    <a href="~/blog/@art.Title.Replace(" ", "-").ToLower()">
+                        <h2 class="post-title">
+                            @art.Title
+                        </h2>
+                        @if (!art.SubTitle.Equals(string.Empty))
+                        {
+                            <h3 class="post-subtitle">
+                                @art.SubTitle
+                            </h3>
+                        }
+                    </a>
+                    <p class="post-meta">
+                        Posted by
+                        <a href="~/">Davide Dolce</a>
+                        on @art.PubDate
+                    </p>
+                </div>
+            }
+            <br>
+            <div class="clearfix">
+                <div page-index="@Model.PagingInfo" page-action="Blog" page-classes-enabled="true" page-class-normal="btn-primary">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

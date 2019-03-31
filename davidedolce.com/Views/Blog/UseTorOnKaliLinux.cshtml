@@ -1,0 +1,59 @@
+﻿<header class="masthead" style="background-image: url('/img/use-tor-on-kali-linux-bg.jpeg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>@ViewBag.PostTitle</h1>
+                    <span class="meta">
+                        Posted by
+                        <a href="~/">Davide Dolce</a>
+                        on @ViewBag.PostDate
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p>I am big fan of open source, my favourite Linux distro is <strong>Kali Linux</strong>. It is designed for penetration testing, I used it for several years but I still have more things to learn. It helped me to understand more about penetration testing and the different tools used to hack different systems. Many tools require root privilegies and on Kali you are permanently logged in as root, for security reasons you can't use Tor if you have administrator privilegis.</p>
+                <h2>It easy to install Tor, why make a post for this topic ?</h2>
+                <p>Kali is particular as distro, it is not easy to use, everything you are going to do requires a big knowledge of Linux terminal. I faced many problems that put my skills to the test and sometime it's very hard to figure out what is the real problem.</p>
+                <h2>Why is Tor so important ?</h2>
+                <p>As mentioned on the offical <a href="https://www.torproject.org/about/overview.html.en">page</a>, Tor protects you against a common form of Internet surveillance known as <strong>"traffic analysis"</strong>, which can be used to infer who is talking to whom over a public network. In other words some people can know behavior and interests, so this is the main reason about why you should use Tor.</p>
+                <h2>Install Tor on Kali Linux, first option</h2>
+                <p>This is the most easy way to install Tor, but sometime is not enough to get the it work. The Tor documention says clearly to not use this method because you are downloading untrustable and obsolete versions. I show in the next paragraph the second method, for now you need to log in as root in the terminal and run the following commands:</p>
+<pre><code class="bash hljs">sudo -s</code></pre>
+<pre><code class="bash hljs">apt-get install tor</code></pre>
+                <h2>Install Tor on Kali Linux, second option</h2>
+                <p>This is the recommened method to use, visit the <a href="https://www.torproject.org/docs/debian.html.en">Tor</a> website and choose a Debian version, I am using the stable one, copy the following lines and paste them in this file <strong>"/etc/apt/sources.list"</strong>:</p>
+<pre><code class="bash hljs">deb https://deb.torproject.org/torproject.org stretch main
+deb-src https://deb.torproject.org/torproject.org stretch main
+</code></pre>
+                <p>In order to avoid file certification problems, you need to import the <strong>GPG keys</strong>, they might change check the <a href="https://www.torproject.org/docs/debian.html.en">official</a> website to be sure. Copy and paste those two lines in the terminal:</p>
+<pre><code class="bash hljs">curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --import
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+</code></pre>
+                <p>Run the following commands to keep your current signing key:</p>
+<pre><code class="bash hljs">apt update
+apt install tor deb.torproject.org-keyring
+</code></pre>
+                <h2>Create another user</h2>
+                <p>As I mentioned before in this article, you have to create another user, Tor will not work with the default Kali user. Use <strong>adduser</strong> command to add a new user to your system, replace <strong>myNewUsername</strong> with the user that you want to create:</p>
+<pre><code class="bash hljs">adduser myNewUsername</code></pre>
+                <p>Then set the new password for the user and run the following command to switch it:</p>
+<pre><code class="bash hljs">su - myNewUsername</code></pre>
+                <p>Run the following commands to check if Tor has been installed correctly:</p>
+<pre><code class="bash hljs">service tor start</code></pre>
+<pre><code class="bash hljs">service tor status</code></pre>
+<pre><code class="bash hljs">service tor stop</code></pre>
+                <h2>Final thoughts</h2>
+                <p>Tor will help you to stay anonymously online along with <strong>DuckDuckGo</strong>, but it still possible to get your real IP address even if you are protected by the Tor Network. My advice is to keep eyes open, you never know what could happen. If you are not still satisfied, a <strong>Vpn</strong> will give you an extra protection but that's another story.</p>
+            </div>
+        </div>
+    </div>
+</article>

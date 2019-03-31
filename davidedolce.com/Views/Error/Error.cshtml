@@ -1,0 +1,74 @@
+﻿@model int
+
+@{
+
+    var statusCode = Model;
+
+    var statusmessage = "";
+
+    switch (statusCode)
+
+    {
+
+        case 400:
+
+            statusmessage = "Bad request: The request cannot be fulfilled due to bad syntax";
+
+            break;
+
+        case 403:
+
+            statusmessage = "Forbidden";
+
+            break;
+
+        case 404:
+
+            statusmessage = "Page not found";
+
+            break;
+
+        case 408:
+
+            statusmessage = "The server timed out waiting for the request";
+
+            break;
+
+        case 500:
+
+            statusmessage = "Internal Server Error - server was unable to finish processing the request";
+
+            break;
+
+        default:
+
+            statusmessage = "That’s odd... Something we didn't expect happened";
+
+            break;
+
+    }
+
+}
+
+<header class="masthead" style="background-image: url('/img/page-not-found-bg.jpeg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Error @Model</h1>
+                    <span class="subheading">@statusmessage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h1>Oh my Oh my! This was not expected.</h1>
+            <p>It seems the resource you were looking for on this server is not here or it has been moved. However you can return to <a href="~/Home/Index">Home</a> or find other links to visit :)</p>
+        </div>
+    </div>
+</div>

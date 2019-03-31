@@ -1,0 +1,113 @@
+﻿<header class="masthead" style="background-image: url('/img/fetch-api-bg.jpeg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>@ViewBag.PostTitle</h1>
+                    <h2 class="subheading">@ViewBag.PostSubTitle</h2>
+                    <span class="meta">
+                        Posted by
+                        <a href="~/">Davide Dolce</a>
+                        on @ViewBag.PostDate
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p>The <strong>Fetch Api</strong> offers you a simple way to make any kind of request you wish to do using <strong>Javascript</strong>. The Fetch code I am going to show you, works with Node.js or a browser console, in other words you do not necessarily need to install Node.js and the Fetch package on your computer to get the code work. If you decide to use the browser console you do not need to import the module, in this post I only show how to implement the code with Node.js.</p>
+                <h2>Working with Node.js</h2>
+                <p>The first thing you need to do is install <a href="https://nodejs.org/en/">Node.js</a>, when the installation is complete open the command line and navigate to the path where you want launch your script. If you are using Linux or Mac type <strong>ls</strong> to display the files in the current directory, on Windows type <strong>dir</strong>, use <strong>cd</strong> to change directory, it works on every OS. After that launch the following command:</p>
+<pre><code class="bash hljs">npm install node-fetch</code></pre>
+                <h3>Get request</h3>
+                <p>Create a file named <strong>get.js</strong>, copy and paste the following code:</p>
+<pre><code class="javascript hljs"><span class="hljs-keyword">var</span> fetch = <span class="hljs-selector-class">require</span>(<span class="hljs-string">'node-fetch'</span>);
+fetch(<span class="hljs-string">'https://api.github.com/users/Cramenorn'</span>)
+    .<span class="hljs-selector-class">then</span>(response => response.json())
+    .<span class="hljs-selector-class">then</span>(data => {
+        <span class="hljs-selector-class">console</span>.log(data)
+    }).<span class="hljs-selector-class">catch</span>(error => <span class="hljs-selector-class">console</span>.error(error));</code></pre>
+                <p>Launch the js file from the command line:</p>
+<pre><code class="bash hljs">node get.js</code></pre>
+                <h3>Get request json response:</h3>
+<pre><code class="json hljs">$ node get.js
+{ 
+    <span class="hljs-keyword">login</span>: <span class="hljs-string">'Cramenorn'</span>,
+    <span class="hljs-keyword">id</span>: <span class="hljs-string">43040746</span>,
+    <span class="hljs-keyword">node_id</span>: <span class="hljs-string">'MDQ6VXNlcjQzMDQwNzQ2'</span>,
+    <span class="hljs-keyword">avatar_url</span>: <span class="hljs-string">'https://avatars2.githubusercontent.com/u/43040746?v=4'</span>,
+    <span class="hljs-keyword">gravatar_id</span>: <span class="hljs-string">''</span>,
+    <span class="hljs-keyword">url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn'</span>,
+    <span class="hljs-keyword">html_url</span>: <span class="hljs-string">'https://github.com/Cramenorn'</span>,
+    <span class="hljs-keyword">followers_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/followers'</span>,
+    <span class="hljs-keyword">following_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/following{/other_user}'</span>,
+    <span class="hljs-keyword">gists_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/gists{/gist_id}'</span>,
+    <span class="hljs-keyword">starred_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/starred{/owner}{/repo}'</span>,
+    <span class="hljs-keyword">subscriptions_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/subscriptions'</span>,
+    <span class="hljs-keyword">organizations_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/orgs'</span>,
+    <span class="hljs-keyword">repos_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/repos'</span>,
+    <span class="hljs-keyword">events_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/events{/privacy}'</span>,
+    <span class="hljs-keyword">received_events_url</span>: <span class="hljs-string">'https://api.github.com/users/Cramenorn/received_events'</span>,
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">'User'</span>,
+    <span class="hljs-keyword">site_admin</span>: <span class="hljs-string">false</span>,
+    <span class="hljs-keyword">name</span>: <span class="hljs-string">'Davide Dolce'</span>,
+    <span class="hljs-keyword">company</span>: <span class="hljs-string">'Welol Next'</span>,
+    <span class="hljs-keyword">blog</span>: <span class="hljs-string">'https://www.linkedin.com/in/davidedolce/'</span>,
+    <span class="hljs-keyword">location</span>: <span class="hljs-string">'Torino Italia'</span>,
+    <span class="hljs-keyword">email</span>: <span class="hljs-string">null</span>,
+    <span class="hljs-keyword">hireable</span>: <span class="hljs-string">null</span>,
+    <span class="hljs-keyword">bio</span>: <span class="hljs-string">'Internship as software developer at Welol Next since february 2019. Passionate gamer and programmer always looking for new challenges.'</span>,
+    <span class="hljs-keyword">public_repos</span>: <span class="hljs-string">6</span>,
+    <span class="hljs-keyword">public_gists</span>: <span class="hljs-string">0</span>,
+    <span class="hljs-keyword">followers</span>: <span class="hljs-string">2</span>,
+    <span class="hljs-keyword">following</span>: <span class="hljs-string">3</span>,
+    <span class="hljs-keyword">created_at</span>: <span class="hljs-string">'2018-09-06T15:07:27Z'</span>,
+    <span class="hljs-keyword">updated_at</span>: <span class="hljs-string">'2019-03-02T19:08:51Z'</span> 
+}
+</code></pre>
+                <h3>Token authorization</h3>
+                <p>I am using my own Get request, you do not need to create it because the process is the same for other kind of Get request, obviously it depends what you want to do. Create a file named <strong>getToken.js</strong> and copy and paste the following code:</p>
+<pre><code class="javascript hljs"><span class="hljs-keyword">var</span> fetch = <span class="hljs-selector-class">require</span>(<span class="hljs-string">'node-fetch'</span>);
+fetch(<span class="hljs-string">"http://localhost:5000/api/token"</span>, {
+        <span class="hljs-selector-class">credentials</span>: <span class="hljs-string">'include'</span>
+        <span class="hljs-selector-class">headers</span>: { <span class="hljs-comment">//define the headers</span>
+            <span class="hljs-string">"Authorization"</span>: <span class="hljs-string">"Bearer myPersonalToken"</span> <span class="hljs-comment">//change myPersonalToken to another valid token</span>
+    }
+}).<span class="hljs-selector-class">then</span>(res => res.json()).<span class="hljs-selector-class">then</span>(response => <span class="hljs-selector-class">console</span>.log(<span class="hljs-string">'Success:'</span> <span class="hljs-selector-class">JSON</span>.stringify(response))).<span class="hljs-selector-class">catch</span>(error => <span class="hljs-selector-class">console</span>.error(<span class="hljs-string">'Error:'</span>, error));
+</code></pre>
+                <h3>Post request</h3>
+                <p>I created my own Post request here, you need to change body content, create a file named <strong>post.js</strong> and copy and paste the following code:</p>
+<pre><code class="javascript hljs"><span class="hljs-keyword">var</span> fetch = <span class="hljs-selector-class">require</span>(<span class="hljs-string">'node-fetch'</span>);
+fetch(<span class="hljs-string">"http://localhost:5000/api/token"</span>, {
+    <span class="hljs-selector-class">method</span>: <span class="hljs-string">"post"</span>, <span class="hljs-comment">//type of request</span>
+    <span class="hljs-selector-class">headers</span>: {
+        <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"application/json"</span>
+    },
+    <span class="hljs-string">body</span>: <span class="hljs-selector-class">JSON</span>.stringify({ <span class="hljs-comment">//this is where you put your json body, with a key and a value the request should receive from the response</span>
+       username: "mario",
+       password: "secret"
+    })
+}).<span class="hljs-selector-class">then</span>(res => res.json()).<span class="hljs-selector-class">then</span>(response => console.log(<span class="hljs-string">'Success:'</span>, <span class="hljs-selector-class">JSON</span>.stringify(response))).<span class="hljs-selector-class">catch</span>(error => <span class="hljs-selector-class">console</span>.error(<span class="hljs-string">'Error:'</span>, error));</code></pre>
+                <h3>Syntax explaining</h3>
+                <p>As you can see the syntax is very simple, you import the module at the top of your file, then you use the <strong>fetch</strong> variable to call the function with an url as parameter. You use the keyword <strong>then</strong> for handling the data you get from the api and the <strong>catch</strong> keyword to handle exceptionts that the server could return. Here an example to help you remember really well the syntax:</p>
+<pre><code class="javascript hljs">fetch(url) <span class="hljs-comment">//call the fetch function and pass an url</span>
+    .<span class="hljs-selector-class">then</span>(<span class="hljs-keyword">function</span>() {
+        <span class="hljs-comment">// handle the data you get from the api</span>
+    })
+    .<span class="hljs-selector-class">catch</span>(<span class="hljs-keyword">function</span>(){
+        <span class="hljs-comment">// handle any kind of exeption</span>
+    })
+</code></pre>
+                <h3>Final Thoughts</h3>
+                <p>There are other ways to do these kind of requests, but now you should have got a clear idea about how to implement them. Unfortunately not all browsers are supporting Fetch, but it still remains a good alternative not only to Jquery and Ajax but even to XMLHttpRequest.</p>
+                <p>Visit the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">MDN web docs</a> and <a href="https://github.github.io/fetch/">Github.io</a> for more info.</p>
+            </div>
+        </div>
+    </div>
+</article>

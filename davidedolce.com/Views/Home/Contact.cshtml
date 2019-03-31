@@ -1,0 +1,86 @@
+﻿@model MyWebsite.Models.ContactViewModel
+@inject IConfiguration Configuration
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/contact-bg.jpeg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>@ViewBag.TitleNav</h1>
+                    <span class="subheading">@ViewBag.SubTitleNav</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+            <form asp-action="Contact" method="post" name="sentMessage" id="contactForm" novalidate>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Name</label>
+                        <input type="text" asp-for="Name" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                        <span asp-validation-for="Name" class="text-muted"></span>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Email Address</label>
+                        <input type="email" asp-for="Email" class="form-control" placeholder="Email Address" id="email">
+                        <span asp-validation-for="Email" class="text-muted"></span>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Subject</label>
+                        <input type="text" asp-for="Subject" class="form-control" placeholder="Subject" id="subject" required data-validation-required-message="Please enter a subject.">
+                        <span asp-validation-for="Subject" class="text-muted"></span>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Message</label>
+                        <textarea asp-for="Message" rows="3" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                        <span asp-validation-for="Message" class="text-muted"></span>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <br />
+                <div class="control-group">
+                    @Html.GoogleReCaptcha(Configuration.GetValue<String>("GoogleReCaptcha:ClientKey"))
+                    <br>
+                    <div id="failed-captcha"></div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                </div>
+            </form>
+            <div>
+                <div>
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        @foreach (var modelState in ViewData.ModelState.Values)
+                        {
+                            foreach (var error in modelState.Errors)
+                            {
+                                <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong> Error:</strong> @error.ErrorMessage</div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div>@ViewBag.Message</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

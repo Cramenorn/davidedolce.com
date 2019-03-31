@@ -1,0 +1,137 @@
+﻿@inject IConfiguration Configuration
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.TitleHead</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Davide Dolce - Software Developer specialized in backend development and cloud technologies. Writer of blog articles, sportsman and gamer in spare time, he is always searching new challenges to improve his skills.">
+        <meta name="keywords" content="backend developer, dotnet developer, software developer, c# developer, java developer, developer, programmer, software, programming, asp.net, asp.net core">
+        <meta name="author" content="Davide Dolce">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width" />
+
+        <!--Favicons-->
+        <partial name="_Favicons" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="/clean-blog-theme/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!--Custom highlighting code-->
+        <link rel="stylesheet" href="~/clean-blog-theme/css/monokai-sublime.min.css">
+
+        <!-- Custom fonts for this template -->
+        <link href="/clean-blog-theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- Custom styles for this template -->
+        <link href="/clean-blog-theme/css/clean-blog.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="~/">Davide Dolce</a>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/blog">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <hr>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://github.com/Cramenorn">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/in/ddolce/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="~/feed">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.youtube.com/channel/UChBOmFUlCVeQa0P7mq5eDDQ">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-muted">
+                            Copyright &copy; 2019 by Davide Dolce - <a href="~/privacy-policy">Privacy Policy</a>.
+                            <br>
+                            Made with passion and <i class="fa fa-heart"></i> using <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core">Asp.Net Core</a> and <a href="https://docs.microsoft.com/en-us/dotnet/csharp/">C#</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="/clean-blog-theme/vendor/jquery/jquery.min.js"></script>
+        <script src="/clean-blog-theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/src/jquery.validate.unobtrusive.min.js"></script>
+
+        <!-- Custom scripts for this template -->
+        <script src="/clean-blog-theme/js/clean-blog.min.js"></script>
+
+        <!-- Google recaptcha script and callback-->
+        <script>var imNotARobot = function () { grecaptcha.render("contact-recaptcha", { sitekey: @Html.Raw(Json.Serialize(Configuration.GetValue<String>("GoogleRecaptcha:ClientKey"))) }); };</script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <!--Load highlight script-->
+        <script src="~/clean-blog-theme/js/highlight.pack.js"></script>
+
+        <!--Validate the recaptcha on client side-->
+        <script src="~/custom-js/recaptcha-check-form.min.js"></script>
+    </body>
+</html>
